@@ -15,6 +15,18 @@ struct A
 };
 
 
+struct C
+{
+  int c;
+  struct C *cp;
+};
+
+
+struct D
+{
+  int d;
+};
+
 
 void foo(int *p)
 {
@@ -56,5 +68,38 @@ int main(void)
   bar(&p_a->b->b);
 
   printf("n: %i\n", n);
+  printf("b: %i\n", (*p_a->b).b);
+
+  p_a->b->b = 300;
+  printf("b: %i\n", p_a->b->b);
+
+  struct C c2 = { .c = 2, .cp = NULL };
+  struct C c1 = { .c = 1, .cp = &c2 };
+
+  printf("c1: %i\n", c1.c);
+  printf("c2: %i\n", c2.c);
+  c1 = *c1.cp;
+
+  printf("c1: %i\n", c1.c);
+  printf("c2: %i\n", c2.c);
+
+  c2.c = 3;
+  //c1.c = 3;
+  printf("c1: %i\n", c1.c);
+  printf("c2: %i\n", c2.c);
+
+  struct D d1 = { .d = 1 };
+  struct D d2 = { .d = 2 };
+
+  printf("d1: %i\n", d1.d);
+  printf("d2: %i\n", d2.d);
+
+  d1 = d2;
+  printf("d1: %i\n", d1.d);
+  printf("d2: %i\n", d2.d);
+  foo(&d1.d);
+  printf("d1: %i\n", d1.d);
+  printf("d2: %i\n", d2.d);
+
   return 0;
 }
