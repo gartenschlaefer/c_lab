@@ -101,5 +101,12 @@ int main(void)
   printf("d1: %i\n", d1.d);
   printf("d2: %i\n", d2.d);
 
+  // arrays
+  int e1[3] = { 1, 2, 3 };
+  unsigned char e2[3] = { 1, 2, 3 };
+  void *p_e = e1;
+
+  for(int i = 0; i < 3; i++){ printf("val: %d, pointer: %p\n", p_e, p_e); p_e++; } 
+
   return 0;
 }
