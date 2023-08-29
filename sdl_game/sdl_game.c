@@ -4,10 +4,11 @@
 // sdl installs 
 // header: /usr/local/include/SDL2
 // source: /usr/local/lib/libSDL2.so
-// build: gcc sdl_game.c -o build/sdl_game -I /usr/local/include/SDL2 -L /usr/local/lib -Wl,-rpath,/usr/local/lib -Wl,--enable-new-dtags -lSDL2
+// build: gcc sdl_game.c -o build/sdl_game -I /usr/local/include/SDL2 -D_REENTRANT -L /usr/local/lib -Wl,-rpath,/usr/local/lib -Wl,--enable-new-dtags -lSDL2
 
 #include <stdio.h>
 #include <SDL.h>
+#include "renderer.h"
 
 int main(void)
 {
@@ -21,8 +22,8 @@ int main(void)
   // create a window
   SDL_Window* window = SDL_CreateWindow(w_name, 0, 0, 640, 480, 0);
 
-  // renderer
-  SDL_Renderer* renderer = SDL_CreateRenderer(window, -1, 0);
+  // get renderer
+  SDL_Renderer* renderer = new_renderer(window);
 
   // draw
   SDL_SetRenderDrawColor(renderer, 200, 200, 0, 0);
