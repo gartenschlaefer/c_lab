@@ -51,7 +51,13 @@ int main(void)
   float f = 200.0 / 3.0;
   int g = f_round_int(f);
 
-  printf("f: %f, round: %i or %i", f, g, f_round_int(200.0 / 3.0));
+  printf("\nf: %f, round: %i or %i\n", f, g, f_round_int(200.0 / 3.0));
+
+  printf("\ncompare1: %d\n", (unsigned char)(10 == 0));
+  printf("compare2: %d\n", (unsigned char)(10 == 10));
+
+  printf("\nnot 10: %d\n", (unsigned char)(!10));
+  printf("\nnot 0: %d\n", (unsigned char)(!0));
 
 
   return 0;

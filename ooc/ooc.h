@@ -4,7 +4,17 @@
 #ifndef OOC_H
 #define OOC_H
 
+#include<stdlib.h>
 #include<stdarg.h>
+
+// defines
+#if !defined MANY || MANY < 1
+#define MANY 10
+#endif
+
+// heap
+extern int heap[MANY];
+
 
 // class struct
 struct Class
@@ -15,7 +25,8 @@ struct Class
 };
 
 // header
-void *new(const void *cls, ...);
-void delete(void *object);
+void *new_simple(const void *type, ...);
+void *new_cls(const void *cls, ...);
+void delete_cls(void *object);
 
 #endif
