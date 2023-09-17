@@ -3,14 +3,19 @@
 
 #include<stdio.h>
 
+#include "test_ooc.h"
+
 #include "object.h"
 #include "set.h"
-#include "test_ooc.h"
 #include "ooc.h"
 
 
 void test_simple_new(void)
 {
+  /*
+   * simple heap with local memory
+   */
+
   void *s = new_simple(Set);
 
   printf("new set: %p\n", s);
@@ -27,13 +32,38 @@ void test_simple_new(void)
   if(!contains(s, c)){ puts("does not contain c!"); }
 }
 
+void test_struct_new(void)
+{
+  /*
+   * uses dynamic memory 
+   */
+
+  void *s = new_struct(Set_struct);
+
+  printf("new set: %p\n", s);
+  void *o = new_struct(Object_struct);
+  printf("new object: %p\n", o);
+
+  void *a = add_struct(s, o);
+  void *b = add_struct(s, new_struct(Object_struct));
+  void *c = new_struct(Object_struct);
+
+  // contains
+  puts("\ncontains:");
+  if(contains_struct(s, a) && contains_struct(s, b)){ puts("contains a and b: ok"); }
+  if(!contains_struct(s, c)){ puts("does not contain c!"); }
+
+  printf("elements in set: %i\n", count(s));
+}
+
 
 int main(void)
 {
   printf("--\nWelcome to Object-oriented C\n");
 
   // test simple
-  test_simple_new();
+  //test_simple_new();
+  test_struct_new();
 
 
   //void *test_class = new(TestClass);

@@ -31,6 +31,14 @@ void *new_simple(const void *type, ...)
   return p;
 }
 
+void *new_struct(const void *type, ...)
+{
+  const size_t size = *(const size_t *)type;
+  void *p = calloc(1, size);
+  assert(p);
+  return p;
+}
+
 void *new_cls(const void *cls, ...)
 {
   const struct Class *class = cls;

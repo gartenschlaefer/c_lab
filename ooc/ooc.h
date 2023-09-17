@@ -26,6 +26,7 @@ struct Class
 
 // header
 void *new_simple(const void *type, ...);
+void *new_struct(const void *type, ...);
 void *new_cls(const void *cls, ...);
 void delete_cls(void *object);
 
