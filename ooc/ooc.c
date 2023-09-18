@@ -1,5 +1,6 @@
 // --
 // ooc functionalities
+// adapted from: Object-Oriented Programming With ANSI-C by Axel-Tobias Schreiner
 
 #include<stdio.h>
 #include<assert.h>
@@ -53,4 +54,11 @@ void *new_cls(const void *cls, ...)
     va_end(ap);
   }
   return p;
+}
+
+void delete_cls(void *self)
+{
+  const struct Class **cp = self;
+  if(self && *cp && (*cp)->destructor){ self = (*cp)->destructor(self); }
+  free(self);
 }

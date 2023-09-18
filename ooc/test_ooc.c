@@ -8,11 +8,11 @@
 #include "object.h"
 #include "set.h"
 #include "ooc.h"
-
+#include "string.h"
 
 void test_simple_new(void)
 {
-  /*
+  /**
    * simple heap with local memory
    */
 
@@ -32,9 +32,10 @@ void test_simple_new(void)
   if(!contains(s, c)){ puts("does not contain c!"); }
 }
 
+
 void test_struct_new(void)
 {
-  /*
+  /**
    * uses dynamic memory 
    */
 
@@ -63,8 +64,13 @@ int main(void)
 
   // test simple
   //test_simple_new();
-  test_struct_new();
+  //test_struct_new();
 
 
-  //void *test_class = new(TestClass);
+  struct String *s1 = new_cls(String, "hi");
+  //void *s2 = new_cls(String, "there");
+
+  printf("text: %s\n", s1->text);
+
+
 }

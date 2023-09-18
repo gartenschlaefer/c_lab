@@ -11,6 +11,7 @@ extern const void *Set_struct;
 // structs
 struct Set
 {
+  const void *cls;
   unsigned count;
 };
 
