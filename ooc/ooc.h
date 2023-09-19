@@ -22,6 +22,7 @@ struct Class
   size_t size;
   void * (*constructor)(void *self, va_list *app);
   void * (*destructor)(void *self);
+  void (*draw)(const void *self);
 };
 
 // header
@@ -33,5 +34,7 @@ void delete_cls(void *object);
 void *clone(const void *self);
 int differ(const void *self, const void *b);
 size_t my_sizeof(const void *self);
+
+void draw(const void *self);
 
 #endif

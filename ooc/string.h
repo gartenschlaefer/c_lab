@@ -14,6 +14,7 @@ struct String
   const void *cls;
   char *text;
   //char *(*print)(void);
+  //char *(*get_text)(void);
 };
 
 // header

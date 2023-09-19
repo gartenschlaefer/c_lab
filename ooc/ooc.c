@@ -62,3 +62,10 @@ void delete_cls(void *self)
   if(self && *cp && (*cp)->destructor){ self = (*cp)->destructor(self); }
   free(self);
 }
+
+void draw(const void *self)
+{
+  const struct Class *const *cp = self;
+  assert(self && *cp && (*cp)->draw);
+  (*cp)->draw(self);
+}

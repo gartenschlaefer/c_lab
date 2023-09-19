@@ -9,6 +9,7 @@
 #include "set.h"
 #include "ooc.h"
 #include "string.h"
+#include "point.h"
 
 void test_simple_new(void)
 {
@@ -58,19 +59,42 @@ void test_struct_new(void)
 }
 
 
-int main(void)
+void test_string_cls(void)
+{
+  /**
+   * test string class
+   */
+
+  struct String *s1 = new_cls(String, "hi");
+  //void *s2 = new_cls(String, "there");
+
+  printf("text: %s\n", s1->text);
+} 
+
+
+int main(int argc, char **argv)
 {
   printf("--\nWelcome to Object-oriented C\n");
 
   // test simple
   //test_simple_new();
   //test_struct_new();
+  //test_string_cls();
 
+  void *p;
+  while(*++argv)
+  {
+    switch(**argv)
+    {
+      case 'p': p = new_cls(Point, 1, 2); break;
+      default: continue;
+    }
 
-  struct String *s1 = new_cls(String, "hi");
-  //void *s2 = new_cls(String, "there");
+    draw(p);
+    move(p, 10, 10);
+    draw(p);
+    delete_cls(p);
+  }
 
-  printf("text: %s\n", s1->text);
-
-
+  return 0;
 }
