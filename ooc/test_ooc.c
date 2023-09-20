@@ -10,6 +10,7 @@
 #include "ooc.h"
 #include "string.h"
 #include "point.h"
+#include "circle.h"
 
 void test_simple_new(void)
 {
@@ -87,6 +88,7 @@ int main(int argc, char **argv)
     switch(**argv)
     {
       case 'p': p = new_cls(Point, 1, 2); break;
+      case 'c': p = new_cls(Circle, 5, 6, 7); break;
       default: continue;
     }
 

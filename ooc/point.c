@@ -4,18 +4,14 @@
 #include<stdio.h>
 
 #include "ooc.h"
-
-struct Point
-{
-  const void *class;
-  int x, y;
-};
+#include "point.h"
 
 static void *Point_constructor(void *_self, va_list *app)
 {
   struct Point *self = _self;
   self->x = va_arg(*app, int);
   self->y = va_arg(*app, int);
+  draw(self);
   return self;
 }
 
