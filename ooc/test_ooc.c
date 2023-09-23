@@ -11,6 +11,8 @@
 #include "string.h"
 #include "point.h"
 #include "circle.h"
+#include "cls_object.h"
+#include "any.h"
 
 void test_simple_new(void)
 {
@@ -73,15 +75,8 @@ void test_string_cls(void)
 } 
 
 
-int main(int argc, char **argv)
+void test_draw_cls(int argc, char **argv)
 {
-  printf("--\nWelcome to Object-oriented C\n");
-
-  // test simple
-  //test_simple_new();
-  //test_struct_new();
-  //test_string_cls();
-
   void *p;
   while(*++argv)
   {
@@ -97,6 +92,28 @@ int main(int argc, char **argv)
     draw(p);
     delete_cls(p);
   }
+}
+
+
+int main(int argc, char **argv)
+{
+  printf("--\nWelcome to Object-oriented C\n");
+
+  // test simple
+  //test_simple_new();
+  //test_struct_new();
+  //test_string_cls();
+
+  //test_draw_cls(argc, argv);
+
+  void *o = new_cls_obj(ClsObject);
+  const void *Any = new_cls_obj(Cls, "Any", ClsObject, sizeof(o), differ, Any_differ, 0);
+
+  void *a = new_cls_obj(Any);
+
+  puto(Any, stdout);
+  puto(o, stdout);
+  puto(a, stdout);
 
   return 0;
 }

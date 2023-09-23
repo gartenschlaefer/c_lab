@@ -32,7 +32,7 @@ void *new_cls(const void *cls, ...);
 void delete_cls(void *object);
 
 void *clone(const void *self);
-int differ(const void *self, const void *b);
+//int differ(const void *self, const void *b);
 size_t my_sizeof(const void *self);
 
 void draw(const void *self);

@@ -20,6 +20,6 @@ struct Object
 static const size_t _Object = sizeof(struct Object);
 
 // header
-int differ(const void *a, const void *b);
+//int differ(const void *a, const void *b);
 
 #endif
