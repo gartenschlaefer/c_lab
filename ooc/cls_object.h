@@ -51,4 +51,8 @@ void *destructor(void *_self);
 int differ(const void *_self, const void *b);
 int puto(const void *_self, FILE *fp);
 
+void *super_constructor(const void *_class, void *_self, va_list *app);
+void *super_destructor(const void *_class, void *_self);
+
+
 #endif

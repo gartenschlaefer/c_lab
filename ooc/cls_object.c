@@ -88,20 +88,20 @@ const void *super(const void *_self)
   return self->super;
 }
 
-void *new_cls_obj(const void *cls, ...)
+void *new_cls_obj(const void *_class, ...)
 {
-  const struct Cls *class = cls;
-  void *p = calloc(1, class->size);
-  assert(p);
-  *(const struct Cls **) p = class;
-  if(class->constructor)
-  {
-    va_list ap;
-    va_start(ap, cls);
-    p = class->constructor(p, &ap);
-    va_end(ap);
-  }
-  return p;
+  const struct Cls *class = _class;
+  struct ClsObject *object;
+  va_list ap;
+  printf("new class: %p with size %i\n", class, class->size);
+  assert(class && class->size);
+  object = calloc(1, class->size);
+  assert(object);
+  object->cls = class;
+  va_start(ap, _class);
+  object = constructor(object, &ap);
+  va_end(ap);
+  return object;
 }
 
 void delete_cls_obj(void *self)
@@ -156,4 +156,18 @@ int puto(const void *_self, FILE *fp)
   const struct Cls *cls = class_of(_self);
   fprintf(fp, "class: %s puto_cls_obj\n", cls->name);
   return 0;
+}
+
+void *super_constructor(const void *_class, void *_self, va_list *app)
+{
+  const struct Cls *superclass = super(_class);
+  assert(_self && superclass->constructor);
+  return superclass->constructor(_self, app);
+}
+
+void *super_destructor(const void *_class, void *_self)
+{
+  const struct Cls *superclass = super(_class);
+  assert(_self && superclass->destructor);
+  return superclass->destructor(_self);  
 }
