@@ -5,13 +5,8 @@
 
 #include "point_new.h"
 
-//#define PointNew (PointNew ? PointNew : (PointNew = init_point_new()))
-//#define PointClass (PointClass ? PointClass : (PointClass = init_point_class()))
-
-static const struct Cls _PointNew;
-const void *PointNew = &_PointNew;
-static const struct ClsObject _PointClass;
-const void *PointClass = &_PointClass;
+const void *PointNew;
+const void *PointClass;
 
 static void *PointNew_constructor(void *_self, va_list *app)
 {
@@ -66,13 +61,6 @@ void pn_move(void *_self, int dx, int dy)
 
 void init_point_new(void)
 {
-  PointClass = new_cls_obj(Cls, "Point Class", Cls, sizeof(struct PointClass), constructor, PointClass_constructor, 0);
-  PointNew = new_cls_obj(PointClass, "Point", ClsObject, sizeof(struct PointNew), constructor, PointNew_constructor, pn_draw, PointNew_draw, 0);
-  //return new_cls_obj(PointClass, "Point", ClsObject, sizeof(struct PointNew), constructor, PointClass_constructor, pn_draw, PointNew_draw, 0);
-}
-
-void init_point_class(void)
-{
-  ;
-  //return PointNew = new_cls_obj(PointClass, "Point", ClsObject, sizeof(struct PointNew), constructor, PointClass_constructor, pn_draw, PointNew_draw, 0);
+  if(!PointClass){ PointClass = new_cls_obj(Cls, "Point Class", Cls, sizeof(struct PointClass), constructor, PointClass_constructor, 0); }
+  if(!PointNew){ PointNew = new_cls_obj(PointClass, "Point", ClsObject, sizeof(struct PointNew), constructor, PointNew_constructor, pn_draw, PointNew_draw, 0); }
 }

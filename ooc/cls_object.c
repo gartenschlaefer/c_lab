@@ -93,7 +93,7 @@ void *new_cls_obj(const void *_class, ...)
   const struct Cls *class = _class;
   struct ClsObject *object;
   va_list ap;
-  printf("new class: %p with size %i\n", class, class->size);
+  printf("new class: %s with adr: %p with size %i\n", class->name, class, class->size);
   assert(class && class->size);
   object = calloc(1, class->size);
   assert(object);

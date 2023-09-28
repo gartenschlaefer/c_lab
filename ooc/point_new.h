@@ -23,10 +23,8 @@ struct PointClass
 
 void pn_draw(const void *self);
 void pn_move(void *point, int x, int y);
-
 void super_pn_draw(const void *class, const void *self);
 
 void init_point_new(void);
-void init_point_class(void);
 
 #endif

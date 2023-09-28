@@ -14,6 +14,7 @@
 #include "cls_object.h"
 #include "any.h"
 #include "point_new.h"
+#include "circle_new.h"
 
 void test_simple_new(void)
 {
@@ -119,6 +120,7 @@ int main(int argc, char **argv)
 
   // init points
   init_point_new();
+  init_circle_new();
 
   void *p;
   while(*++argv)
@@ -126,7 +128,7 @@ int main(int argc, char **argv)
     switch(**argv)
     {
       case 'p': p = new_cls_obj(PointNew, 1, 2); break;
-      //case 'c': p = new_cls_obj(Circle, 5, 6, 7); break;
+      case 'c': p = new_cls_obj(CircleNew, 5, 6, 7); break;
       default: continue;
     }
 
