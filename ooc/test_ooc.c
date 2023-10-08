@@ -15,6 +15,7 @@
 #include "any.h"
 #include "point_new.h"
 #include "circle_new.h"
+#include "cow.h"
 
 void test_simple_new(void)
 {
@@ -118,11 +119,19 @@ int main(int argc, char **argv)
   // puto(o, stdout);
   // puto(a, stdout);
 
+  // other easy solution with animals
+  struct Cow *cow = Cow_new();
+  cow->speak((struct Animal*) cow);
+  
+  //struct Animal *animal_cow = (struct Animal *)cow;
+  //animal_cow->speak(animal_cow);
+
   // init points
   init_point_new();
   init_circle_new();
 
-  void *p;
+  struct PointClass **p;
+
   while(*++argv)
   {
     switch(**argv)
@@ -132,11 +141,13 @@ int main(int argc, char **argv)
       default: continue;
     }
 
-    printf("now draw %p\n", p);
+    printf("%p\n", p);
     pn_draw(p);
     pn_move(p, 10, 10);
-    pn_draw(p);
+    (*p)->pn_draw(p);
+    //pn_draw(p);
     delete_cls_obj(p);
+    printf("%p\n", p);
   }
 
   return 0;
