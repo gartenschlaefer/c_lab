@@ -10,6 +10,8 @@
 #include <stdbool.h>
 #include <SDL.h>
 #include "renderer.h"
+#include "command.h"
+#include "command_n.h"
 
 struct GameLogics
 {
@@ -77,6 +79,9 @@ int main(void)
 
   // wait
   //SDL_Delay(2000);
+
+  //Command_test();
+  Command_N_test();
 
   while(game.game_logics->runs)
   {
